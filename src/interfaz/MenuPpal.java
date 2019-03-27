@@ -1,4 +1,4 @@
-package calculadora;
+package interfaz;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -16,11 +18,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class Calculadora extends JFrame {
+public class MenuPpal extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -29,7 +33,7 @@ public class Calculadora extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Calculadora frame = new Calculadora();
+					MenuPpal frame = new MenuPpal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +45,7 @@ public class Calculadora extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Calculadora() {
+	public MenuPpal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
@@ -90,11 +94,14 @@ public class Calculadora extends JFrame {
 
 		Panel panel_Top = new Panel();
 		contentPane.add(panel_Top, BorderLayout.NORTH);
+
+		textField = new JTextField();
+		textField.setColumns(10);
 		GroupLayout gl_panel_Top = new GroupLayout(panel_Top);
-		gl_panel_Top.setHorizontalGroup(
-				gl_panel_Top.createParallelGroup(Alignment.LEADING).addGap(0, 440, Short.MAX_VALUE));
-		gl_panel_Top
-				.setVerticalGroup(gl_panel_Top.createParallelGroup(Alignment.LEADING).addGap(0, 10, Short.MAX_VALUE));
+		gl_panel_Top.setHorizontalGroup(gl_panel_Top.createParallelGroup(Alignment.LEADING).addComponent(textField,
+				Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE));
+		gl_panel_Top.setVerticalGroup(gl_panel_Top.createParallelGroup(Alignment.LEADING).addComponent(textField,
+				GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE));
 		panel_Top.setLayout(gl_panel_Top);
 
 		Panel panel_Middle = new Panel();
@@ -110,6 +117,10 @@ public class Calculadora extends JFrame {
 		panel_Middle_Middle.setLayout(gbl_panel_Middle_Middle);
 
 		JButton btnMa = new JButton("MC");
+		btnMa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		GridBagConstraints gbc_btnMa = new GridBagConstraints();
 		gbc_btnMa.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnMa.insets = new Insets(0, 0, 5, 5);
@@ -335,6 +346,13 @@ public class Calculadora extends JFrame {
 
 		Panel panel_Bottom = new Panel();
 		contentPane.add(panel_Bottom, BorderLayout.SOUTH);
-	}
 
+		// Indicar el tamaño del frame
+		setSize(350, 415);
+		// Marcar que sea una aplicación que no se pueda redimensionar
+		setResizable(false);
+		// Añadir el título de la aplicación
+		setTitle("Calculadora 2.0");
+
+	}
 }
