@@ -1,7 +1,9 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -24,7 +26,7 @@ import javax.swing.border.EmptyBorder;
 public class MenuPpal extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textResultado;
 
 	/**
 	 * Launch the application.
@@ -95,12 +97,18 @@ public class MenuPpal extends JFrame {
 		JPanel panel_Top = new JPanel();
 		contentPane.add(panel_Top, BorderLayout.NORTH);
 
-		textField = new JTextField();
-		textField.setColumns(10);
+		textResultado = new JTextField();
+		textResultado.setColumns(10);
+		// Cambiar algunas propiedades
+		textResultado.setBackground(Color.WHITE);
+		textResultado.setFont(new Font("Arial", Font.PLAIN, 15));
+		textResultado.setHorizontalAlignment(JTextField.RIGHT);
+		// Marcar que no se puede modificar directamente.
+		textResultado.setEditable(false);
 		GroupLayout gl_panel_Top = new GroupLayout(panel_Top);
-		gl_panel_Top.setHorizontalGroup(gl_panel_Top.createParallelGroup(Alignment.LEADING).addComponent(textField,
+		gl_panel_Top.setHorizontalGroup(gl_panel_Top.createParallelGroup(Alignment.LEADING).addComponent(textResultado,
 				Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE));
-		gl_panel_Top.setVerticalGroup(gl_panel_Top.createParallelGroup(Alignment.LEADING).addComponent(textField,
+		gl_panel_Top.setVerticalGroup(gl_panel_Top.createParallelGroup(Alignment.LEADING).addComponent(textResultado,
 				GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE));
 		panel_Top.setLayout(gl_panel_Top);
 
@@ -201,6 +209,10 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnRoot, gbc_btnRoot);
 
 		JButton button = new JButton("7");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.fill = GridBagConstraints.BOTH;
 		gbc_button.insets = new Insets(0, 0, 5, 5);
@@ -358,6 +370,15 @@ public class MenuPpal extends JFrame {
 		setResizable(false);
 		// Añadir el título de la aplicación
 		setTitle("Calculadora 2.0");
+
+		// Crear campo de texto
+
+		// Cambiar algunas propiedades
+		textResultado.setBackground(Color.WHITE);
+		textResultado.setFont(new Font("Arial", Font.PLAIN, 15));
+		textResultado.setHorizontalAlignment(JTextField.RIGHT);
+		// Marcar que no se puede modificar directamente.
+		textResultado.setEditable(false);
 
 	}
 }
