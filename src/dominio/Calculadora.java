@@ -5,7 +5,6 @@ import exepciones.DivisionPorCeroExcepcion;
 public class Calculadora {
 
 	// Attributes
-
 	private double num1;
 	private double num2;
 	private String operacion;
@@ -14,9 +13,7 @@ public class Calculadora {
 
 	// Constructor
 	public Calculadora() {
-
 	}
-
 	// Getters and Setters
 
 	public double getNum1() {
@@ -60,63 +57,60 @@ public class Calculadora {
 	}
 
 	// Arithmetic operations
-
 	public double sumar() {
-		return 0;
+		return this.num1 + this.num2;
 	}
 
 	public double restar() {
-		return 0;
+		return this.num1 - this.num2;
 	}
 
 	public double multiplicar() {
-		return 0;
+		return this.num1 * this.num2;
+
 	}
 
 	public double dividir() throws DivisionPorCeroExcepcion {
-		return 0;
+		if (this.num2 == 0) {
+			throw new DivisionPorCeroExcepcion();
+		} else {
+			return this.num1 / this.num2;
+		}
 	}
 
 	public void porcentaje() {
-
 	}
 
 	public double raiz() {
-		return 0;
+		return Math.sqrt(this.num1);
 	}
 
 	public double inversa() throws DivisionPorCeroExcepcion {
-		return 0;
+		return 1 / this.num1;
 	}
 
 	// Change sign to current value
 	public void cambiarSigno() {
-
 	}
 
 	// Reset all variables
 	public void reset() {
-
 	}
 
-	// Concatenate number to numActual
+	// Concatenate number to current number
 	public String concatenar(String numero) {
 		return null;
 	}
 
 	public void retroceder() {
-
 	}
 
 	public void sumarMemoria() {
-
 	}
 
 	public void restarMemoria() {
-
 	}
 
-	// Calculate any operation
 	public double calcular() throws DivisionPorCeroExcepcion {
 		double res = 0;
 		switch (operacion) {
@@ -134,7 +128,9 @@ public class Calculadora {
 			break;
 		case "+%":
 			porcentaje();
+			porcentaje();
 			res = sumar();
+			sumar();
 			break;
 		case "-%":
 			porcentaje();
@@ -151,4 +147,5 @@ public class Calculadora {
 		}
 		return res;
 	}
+
 }
