@@ -7,7 +7,7 @@ public class Calculadora {
 	// Attributes
 	private double num1;
 	private double num2;
-	private String  ;
+	private String operacion ;
 	private String numActual;
 	private String numMemoria;
 
