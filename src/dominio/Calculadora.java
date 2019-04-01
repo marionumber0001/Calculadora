@@ -13,7 +13,10 @@ public class Calculadora {
 
 	// Constructor
 	public Calculadora() {
+
+		reset();
 	}
+
 	// Getters and Setters
 
 	public double getNum1() {
@@ -95,6 +98,10 @@ public class Calculadora {
 
 	// Reset all variables
 	public void reset() {
+
+		this.operacion = "";
+		this.numActual = "0";
+		this.numMemoria = "";
 	}
 
 	// Concatenate number to current number

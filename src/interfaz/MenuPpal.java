@@ -1,4 +1,4 @@
-package interfaces;
+package interfaz;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -29,6 +29,7 @@ public class MenuPpal extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textResultado;
+	private Calculadora calc;
 
 	/**
 	 * Launch the application.
@@ -50,6 +51,9 @@ public class MenuPpal extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuPpal() {
+
+		calc = new Calculadora();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
@@ -99,7 +103,7 @@ public class MenuPpal extends JFrame {
 		JPanel panel_Top = new JPanel();
 		contentPane.add(panel_Top, BorderLayout.NORTH);
 
-		textResultado = new JTextField();
+		textResultado = new JTextField("0");
 		textResultado.setColumns(10);
 		// Cambiar algunas propiedades
 		textResultado.setBackground(Color.WHITE);
@@ -187,6 +191,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnCe, gbc_btnCe);
 
 		JButton btnC = new JButton("C");
+		btnC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clear();
+			}
+		});
 		GridBagConstraints gbc_btnC = new GridBagConstraints();
 		gbc_btnC.fill = GridBagConstraints.BOTH;
 		gbc_btnC.insets = new Insets(0, 0, 5, 5);
@@ -213,6 +222,7 @@ public class MenuPpal extends JFrame {
 		JButton button = new JButton("7");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				insertarNumero("7");
 			}
 		});
 		GridBagConstraints gbc_button = new GridBagConstraints();
@@ -223,6 +233,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(button, gbc_button);
 
 		JButton btnEight = new JButton("8");
+		btnEight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				insertarNumero("8");
+			}
+		});
 		GridBagConstraints gbc_btnEight = new GridBagConstraints();
 		gbc_btnEight.fill = GridBagConstraints.BOTH;
 		gbc_btnEight.insets = new Insets(0, 0, 5, 5);
@@ -231,6 +246,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnEight, gbc_btnEight);
 
 		JButton btnNine = new JButton("9");
+		btnNine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				insertarNumero("9");
+			}
+		});
 		GridBagConstraints gbc_btnNine = new GridBagConstraints();
 		gbc_btnNine.fill = GridBagConstraints.BOTH;
 		gbc_btnNine.insets = new Insets(0, 0, 5, 5);
@@ -255,6 +275,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnPercentage, gbc_btnPercentage);
 
 		JButton btnFour = new JButton("4");
+		btnFour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				insertarNumero("4");
+			}
+		});
 		GridBagConstraints gbc_btnFour = new GridBagConstraints();
 		gbc_btnFour.fill = GridBagConstraints.BOTH;
 		gbc_btnFour.insets = new Insets(0, 0, 5, 5);
@@ -265,6 +290,8 @@ public class MenuPpal extends JFrame {
 		JButton btnFive = new JButton("5");
 		btnFive.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				insertarNumero("5");
+
 			}
 		});
 		GridBagConstraints gbc_btnFive = new GridBagConstraints();
@@ -275,6 +302,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnFive, gbc_btnFive);
 
 		JButton btnSix = new JButton("6");
+		btnSix.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				insertarNumero("6");
+			}
+		});
 		GridBagConstraints gbc_btnSix = new GridBagConstraints();
 		gbc_btnSix.fill = GridBagConstraints.BOTH;
 		gbc_btnSix.insets = new Insets(0, 0, 5, 5);
@@ -301,7 +333,6 @@ public class MenuPpal extends JFrame {
 		JButton btnOne = new JButton("1");
 		btnOne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
 				insertarNumero("1");
 			}
 		});
@@ -313,6 +344,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnOne, gbc_btnOne);
 
 		JButton btnTwo = new JButton("2");
+		btnTwo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				insertarNumero("2");
+			}
+		});
 		GridBagConstraints gbc_btnTwo = new GridBagConstraints();
 		gbc_btnTwo.fill = GridBagConstraints.BOTH;
 		gbc_btnTwo.insets = new Insets(0, 0, 5, 5);
@@ -321,6 +357,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnTwo, gbc_btnTwo);
 
 		JButton btnThree = new JButton("3");
+		btnThree.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				insertarNumero("3");
+			}
+		});
 		GridBagConstraints gbc_btnThree = new GridBagConstraints();
 		gbc_btnThree.fill = GridBagConstraints.BOTH;
 		gbc_btnThree.insets = new Insets(0, 0, 5, 5);
@@ -337,6 +378,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnSubtract, gbc_btnSubtract);
 
 		JButton btnEqualize = new JButton("=");
+		btnEqualize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				calcular();
+			}
+		});
 		GridBagConstraints gbc_btnEqualize = new GridBagConstraints();
 		gbc_btnEqualize.fill = GridBagConstraints.BOTH;
 		gbc_btnEqualize.gridheight = 2;
@@ -347,6 +393,7 @@ public class MenuPpal extends JFrame {
 		JButton btnZero = new JButton("0");
 		btnZero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				insertarNumero("0");
 			}
 		});
 		GridBagConstraints gbc_btnZero = new GridBagConstraints();
@@ -360,6 +407,7 @@ public class MenuPpal extends JFrame {
 		JButton btnComa = new JButton(",");
 		btnComa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				insertarNumero(",");
 			}
 		});
 		GridBagConstraints gbc_btnComa = new GridBagConstraints();
@@ -370,6 +418,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnComa, gbc_btnComa);
 
 		JButton btnAdd = new JButton("+");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				calc.sumar();
+			}
+		});
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
 		gbc_btnAdd.fill = GridBagConstraints.BOTH;
 		gbc_btnAdd.insets = new Insets(0, 0, 0, 5);
@@ -406,7 +459,8 @@ public class MenuPpal extends JFrame {
 
 	private void insertarNumero(String numero) {
 
-		this.textResultado.setText(Calculadora.concatenar(n));
+		this.textResultado.setText(calc.concatenar(numero));
+
 	}
 
 	private void asignarOperacion(String operacion) {
@@ -438,6 +492,9 @@ public class MenuPpal extends JFrame {
 	}
 
 	private void clear() {
+
+		calc.reset();
+		this.textResultado.setText("0");
 
 	}
 
