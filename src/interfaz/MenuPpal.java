@@ -1,4 +1,4 @@
-package interfaz;
+package interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import dominio.Calculadora;
 
 public class MenuPpal extends JFrame {
 
@@ -297,6 +299,12 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnFraction, gbc_btnFraction);
 
 		JButton btnOne = new JButton("1");
+		btnOne.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				insertarNumero("1");
+			}
+		});
 		GridBagConstraints gbc_btnOne = new GridBagConstraints();
 		gbc_btnOne.fill = GridBagConstraints.BOTH;
 		gbc_btnOne.insets = new Insets(0, 0, 5, 5);
@@ -337,6 +345,10 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnEqualize, gbc_btnEqualize);
 
 		JButton btnZero = new JButton("0");
+		btnZero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		GridBagConstraints gbc_btnZero = new GridBagConstraints();
 		gbc_btnZero.fill = GridBagConstraints.BOTH;
 		gbc_btnZero.gridwidth = 2;
@@ -346,6 +358,10 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnZero, gbc_btnZero);
 
 		JButton btnComa = new JButton(",");
+		btnComa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		GridBagConstraints gbc_btnComa = new GridBagConstraints();
 		gbc_btnComa.fill = GridBagConstraints.BOTH;
 		gbc_btnComa.insets = new Insets(0, 0, 0, 5);
@@ -364,6 +380,8 @@ public class MenuPpal extends JFrame {
 		Panel panel_Bottom = new Panel();
 		contentPane.add(panel_Bottom, BorderLayout.SOUTH);
 
+		// ---------------------D i s p l a y---------------------
+
 		// Indicar el tamaño del frame
 		setSize(350, 415);
 		// Marcar que sea una aplicación que no se pueda redimensionar
@@ -371,14 +389,59 @@ public class MenuPpal extends JFrame {
 		// Añadir el título de la aplicación
 		setTitle("Calculadora 2.0");
 
-		// Crear campo de texto
-
 		// Cambiar algunas propiedades
 		textResultado.setBackground(Color.WHITE);
 		textResultado.setFont(new Font("Arial", Font.PLAIN, 15));
 		textResultado.setHorizontalAlignment(JTextField.RIGHT);
 		// Marcar que no se puede modificar directamente.
 		textResultado.setEditable(false);
+
+		// ---------------------D i s p l a y---------------------
+
+		// -------------------------------------------------------
+
+		// ---------------------M e t o d o s---------------------
+
+	}
+
+	private void insertarNumero(String numero) {
+
+		this.textResultado.setText(Calculadora.concatenar(n));
+	}
+
+	private void asignarOperacion(String operacion) {
+
+	}
+
+	private void calcular() {
+
+	}
+
+	private void raiz() {
+
+	}
+
+	private void inversa() {
+
+	}
+
+	private void cambiarSigno() {
+
+	}
+
+	private void retroceder() {
+
+	}
+
+	private void clearError() {
+
+	}
+
+	private void clear() {
+
+	}
+
+	private void refrescarTextoResultado() {
 
 	}
 }

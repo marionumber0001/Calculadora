@@ -99,7 +99,8 @@ public class Calculadora {
 
 	// Concatenate number to current number
 	public String concatenar(String numero) {
-		return null;
+
+		return this.numActual += numero;
 	}
 
 	public void retroceder() {
