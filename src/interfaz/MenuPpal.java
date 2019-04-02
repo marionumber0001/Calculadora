@@ -75,7 +75,7 @@ public class MenuPpal extends JFrame {
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mnNewMenu_Archivo.add(mntmSalir);
 
-		JMenu mnNewMenu_Edicion = new JMenu("Edición");
+		JMenu mnNewMenu_Edicion = new JMenu("EdiciÃ³n");
 		menuBar.add(mnNewMenu_Edicion);
 
 		JMenuItem mntmCopiar = new JMenuItem("Copiar");
@@ -174,7 +174,12 @@ public class MenuPpal extends JFrame {
 		gbc_btnM1.gridy = 0;
 		panel_Middle_Middle.add(btnM1, gbc_btnM1);
 
-		JButton btn_Del = new JButton("←");
+		JButton btn_Del = new JButton("<-");
+		btn_Del.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				retroceder();
+			}
+		});
 		GridBagConstraints gbc_btn_Del = new GridBagConstraints();
 		gbc_btn_Del.fill = GridBagConstraints.BOTH;
 		gbc_btn_Del.insets = new Insets(0, 0, 5, 5);
@@ -183,6 +188,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btn_Del, gbc_btn_Del);
 
 		JButton btnCe = new JButton("CE");
+		btnCe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+		});
 		GridBagConstraints gbc_btnCe = new GridBagConstraints();
 		gbc_btnCe.fill = GridBagConstraints.BOTH;
 		gbc_btnCe.insets = new Insets(0, 0, 5, 5);
@@ -203,7 +213,7 @@ public class MenuPpal extends JFrame {
 		gbc_btnC.gridy = 1;
 		panel_Middle_Middle.add(btnC, gbc_btnC);
 
-		JButton btnMoreLess = new JButton("±");
+		JButton btnMoreLess = new JButton("Â±");
 		GridBagConstraints gbc_btnMoreLess = new GridBagConstraints();
 		gbc_btnMoreLess.fill = GridBagConstraints.BOTH;
 		gbc_btnMoreLess.insets = new Insets(0, 0, 5, 5);
@@ -211,7 +221,7 @@ public class MenuPpal extends JFrame {
 		gbc_btnMoreLess.gridy = 1;
 		panel_Middle_Middle.add(btnMoreLess, gbc_btnMoreLess);
 
-		JButton btnRoot = new JButton("√");
+		JButton btnRoot = new JButton("âˆš");
 		GridBagConstraints gbc_btnRoot = new GridBagConstraints();
 		gbc_btnRoot.fill = GridBagConstraints.BOTH;
 		gbc_btnRoot.insets = new Insets(0, 0, 5, 0);
@@ -435,11 +445,11 @@ public class MenuPpal extends JFrame {
 
 		// ---------------------D i s p l a y---------------------
 
-		// Indicar el tamaño del frame
+		// Indicar el tamaÃ±o del frame
 		setSize(350, 415);
-		// Marcar que sea una aplicación que no se pueda redimensionar
+		// Marcar que sea una aplicaciÃ³n que no se pueda redimensionar
 		setResizable(false);
-		// Añadir el título de la aplicación
+		// AÃ±adir el tÃ­tulo de la aplicaciÃ³n
 		setTitle("Calculadora 2.0");
 
 		// Cambiar algunas propiedades
@@ -459,7 +469,8 @@ public class MenuPpal extends JFrame {
 
 	private void insertarNumero(String numero) {
 
-		this.textResultado.setText(calc.concatenar(numero));
+		calc.concatenar(numero);
+		refrescarTextoResultado();
 
 	}
 
@@ -485,6 +496,8 @@ public class MenuPpal extends JFrame {
 
 	private void retroceder() {
 
+		calc.retroceder();
+		refrescarTextoResultado();
 	}
 
 	private void clearError() {
@@ -495,10 +508,11 @@ public class MenuPpal extends JFrame {
 
 		calc.reset();
 		this.textResultado.setText("0");
-
+		refrescarTextoResultado();
 	}
 
 	private void refrescarTextoResultado() {
 
+		this.textResultado.setText(calc.getNumActual());
 	}
 }

@@ -7,9 +7,10 @@ public class Calculadora {
 	// Attributes
 	private double num1;
 	private double num2;
-	private String operacion ;
+	private String operacion;
 	private String numActual;
 	private String numMemoria;
+	private boolean coma = false;
 
 	// Constructor
 	public Calculadora() {
@@ -102,15 +103,41 @@ public class Calculadora {
 		this.operacion = "";
 		this.numActual = "0";
 		this.numMemoria = "";
+		this.coma = false;
 	}
 
 	// Concatenate number to current number
 	public String concatenar(String numero) {
 
+		if (numero == ",") {
+
+			if (!this.coma) {
+				this.coma = true;
+			} else {
+				return this.numActual;
+			}
+		}
+
+		if (this.numActual.equals("0")) {
+			return this.numActual = numero;
+
+		}
+
 		return this.numActual += numero;
 	}
 
 	public void retroceder() {
+
+		if (this.numActual.charAt(this.numActual.length() - 1) == ',') {
+			this.coma = false;
+		}
+
+		if (this.numActual.length() == 1) {
+			this.numActual = "0";
+		} else {
+			this.numActual = this.numActual.substring(0, this.numActual.length() - 1);
+		}
+
 	}
 
 	public void sumarMemoria() {
