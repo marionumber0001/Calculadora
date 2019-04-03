@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import dominio.Calculadora;
+import exepciones.DivisionPorCeroExcepcion;
 
 public class MenuPpal extends JFrame {
 
@@ -430,7 +431,11 @@ public class MenuPpal extends JFrame {
 		JButton btnAdd = new JButton("+");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				calc.sumar();
+				try {
+					asignarOperacion("+");
+				} catch (DivisionPorCeroExcepcion e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
@@ -474,7 +479,10 @@ public class MenuPpal extends JFrame {
 
 	}
 
-	private void asignarOperacion(String operacion) {
+	private void asignarOperacion(String operacion) throws DivisionPorCeroExcepcion {
+
+		calc.setOperacion(operacion);
+		refrescarTextoResultado();
 
 	}
 

@@ -11,6 +11,8 @@ public class Calculadora {
 	private String numActual;
 	private String numMemoria;
 	private boolean coma = false;
+	private static final int LIMITE_NUMEROS_DISPLAY = 21;
+	private boolean primeraPulsacion = true;
 
 	// Constructor
 	public Calculadora() {
@@ -40,8 +42,30 @@ public class Calculadora {
 		return operacion;
 	}
 
-	public void setOperacion(String operacion) {
-		this.operacion = operacion;
+	public void setOperacion(String operacion) throws DivisionPorCeroExcepcion {
+
+		if (this.operacion.isEmpty()) {
+			this.operacion = operacion;
+			this.numActual = this.numActual.replace(",", ".");
+			this.numActual = this.numActual.replace(".", "");
+			this.num1 = Double.parseDouble(this.numActual);
+			this.numActual = "0";
+			this.coma = false;
+
+		} else {
+			if (primeraPulsacion) {
+				this.numActual = this.numActual.replace(",", ".");
+				this.numActual = this.numActual.replace(".", "");
+				this.num2 = Double.parseDouble(this.numActual);
+				this.numActual = "0";
+				this.coma = false;
+				this.numActual = Double.toString(calcular());
+				this.operacion = operacion;
+			} else {
+				this.operacion = operacion;
+			}
+		}
+
 	}
 
 	public String getNumActual() {
@@ -109,19 +133,19 @@ public class Calculadora {
 	// Concatenate number to current number
 	public String concatenar(String numero) {
 
+		if (LIMITE_NUMEROS_DISPLAY <= this.numActual.length())
+			return this.numActual;
+
 		if (numero == ",") {
-
-			if (!this.coma) {
+			if (!this.coma)
 				this.coma = true;
-			} else {
+			else
 				return this.numActual;
-			}
 		}
 
-		if (this.numActual.equals("0")) {
+		// Start with comma automatically puts us 0
+		if (this.numActual.equals("0") && !numero.equals(","))
 			return this.numActual = numero;
-
-		}
 
 		return this.numActual += numero;
 	}
