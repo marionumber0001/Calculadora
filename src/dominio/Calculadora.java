@@ -159,9 +159,9 @@ public class Calculadora {
 
 	public void retroceder() {
 
-		// The while prohibits deleting digits from the result
-		
-		while (!this.operacion.equals("")) {
+		// The first IF prohibits deleting digits from the result
+
+		if (this.primeraPulsacion) {
 			if (this.numActual.charAt(this.numActual.length() - 1) == ',') {
 				this.coma = false;
 			}
