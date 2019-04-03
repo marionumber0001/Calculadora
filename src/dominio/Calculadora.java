@@ -159,7 +159,8 @@ public class Calculadora {
 
 	public void retroceder() {
 
-		// El while prohibe borrar digitos del resultado
+		// The while prohibits deleting digits from the result
+		
 		while (!this.operacion.equals("")) {
 			if (this.numActual.charAt(this.numActual.length() - 1) == ',') {
 				this.coma = false;
