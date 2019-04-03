@@ -215,7 +215,8 @@ public class Calculadora {
 		this.num1 = 0;
 		this.num2 = 0;
 		this.operacion = "";
-
+		this.primeraPulsacion = false;
+		
 		this.numActual = Double.toString(res);
 		this.numActual = this.numActual.replace(".", ",");
 
