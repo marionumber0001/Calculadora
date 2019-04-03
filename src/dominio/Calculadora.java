@@ -159,14 +159,18 @@ public class Calculadora {
 
 	public void retroceder() {
 
-		if (this.numActual.charAt(this.numActual.length() - 1) == ',') {
-			this.coma = false;
-		}
+		// El while prohibe borrar digitos del resultado
+		while (!this.operacion.equals("")) {
+			if (this.numActual.charAt(this.numActual.length() - 1) == ',') {
+				this.coma = false;
+			}
 
-		if (this.numActual.length() == 1) {
-			this.numActual = "0";
-		} else {
-			this.numActual = this.numActual.substring(0, this.numActual.length() - 1);
+			if (this.numActual.length() == 1) {
+				this.numActual = "0";
+			} else {
+				this.numActual = this.numActual.substring(0, this.numActual.length() - 1);
+			}
+
 		}
 
 	}
@@ -216,7 +220,7 @@ public class Calculadora {
 		this.num2 = 0;
 		this.operacion = "";
 		this.primeraPulsacion = false;
-		
+
 		this.numActual = Double.toString(res);
 		this.numActual = this.numActual.replace(".", ",");
 
