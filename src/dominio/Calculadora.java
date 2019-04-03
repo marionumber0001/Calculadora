@@ -162,18 +162,15 @@ public class Calculadora {
 		// The first IF prohibits deleting digits from the result
 
 		if (this.primeraPulsacion) {
-			if (this.numActual.charAt(this.numActual.length() - 1) == ',') {
+			if (this.numActual.charAt(this.numActual.length() - 1) == ',')
 				this.coma = false;
-			}
 
 			if (this.numActual.length() == 1) {
 				this.numActual = "0";
 			} else {
 				this.numActual = this.numActual.substring(0, this.numActual.length() - 1);
 			}
-
 		}
-
 	}
 
 	public void sumarMemoria() {
