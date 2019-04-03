@@ -76,7 +76,7 @@ public class MenuPpal extends JFrame {
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mnNewMenu_Archivo.add(mntmSalir);
 
-		JMenu mnNewMenu_Edicion = new JMenu("EdiciÃ³n");
+		JMenu mnNewMenu_Edicion = new JMenu("Edición");
 		menuBar.add(mnNewMenu_Edicion);
 
 		JMenuItem mntmCopiar = new JMenuItem("Copiar");
@@ -175,7 +175,7 @@ public class MenuPpal extends JFrame {
 		gbc_btnM1.gridy = 0;
 		panel_Middle_Middle.add(btnM1, gbc_btnM1);
 
-		JButton btn_Del = new JButton("<-");
+		JButton btn_Del = new JButton("←");
 		btn_Del.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				retroceder();
@@ -214,7 +214,7 @@ public class MenuPpal extends JFrame {
 		gbc_btnC.gridy = 1;
 		panel_Middle_Middle.add(btnC, gbc_btnC);
 
-		JButton btnMoreLess = new JButton("Â±");
+		JButton btnMoreLess = new JButton("±");
 		GridBagConstraints gbc_btnMoreLess = new GridBagConstraints();
 		gbc_btnMoreLess.fill = GridBagConstraints.BOTH;
 		gbc_btnMoreLess.insets = new Insets(0, 0, 5, 5);
@@ -222,7 +222,7 @@ public class MenuPpal extends JFrame {
 		gbc_btnMoreLess.gridy = 1;
 		panel_Middle_Middle.add(btnMoreLess, gbc_btnMoreLess);
 
-		JButton btnRoot = new JButton("âˆš");
+		JButton btnRoot = new JButton("√");
 		GridBagConstraints gbc_btnRoot = new GridBagConstraints();
 		gbc_btnRoot.fill = GridBagConstraints.BOTH;
 		gbc_btnRoot.insets = new Insets(0, 0, 5, 0);
