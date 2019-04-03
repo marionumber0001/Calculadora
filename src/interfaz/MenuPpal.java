@@ -270,6 +270,15 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnNine, gbc_btnNine);
 
 		JButton btnDivide = new JButton("/");
+		btnDivide.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					asignarOperacion("/");
+				} catch (DivisionPorCeroExcepcion e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		GridBagConstraints gbc_btnDivide = new GridBagConstraints();
 		gbc_btnDivide.fill = GridBagConstraints.BOTH;
 		gbc_btnDivide.insets = new Insets(0, 0, 5, 5);
@@ -326,6 +335,15 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnSix, gbc_btnSix);
 
 		JButton btnMultiply = new JButton("*");
+		btnMultiply.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					asignarOperacion("*");
+				} catch (DivisionPorCeroExcepcion e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		GridBagConstraints gbc_btnMultiply = new GridBagConstraints();
 		gbc_btnMultiply.fill = GridBagConstraints.BOTH;
 		gbc_btnMultiply.insets = new Insets(0, 0, 5, 5);
@@ -381,6 +399,16 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnThree, gbc_btnThree);
 
 		JButton btnSubtract = new JButton("-");
+		btnSubtract.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					asignarOperacion("-");
+				} catch (DivisionPorCeroExcepcion e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
 		GridBagConstraints gbc_btnSubtract = new GridBagConstraints();
 		gbc_btnSubtract.fill = GridBagConstraints.BOTH;
 		gbc_btnSubtract.insets = new Insets(0, 0, 5, 5);
@@ -391,7 +419,12 @@ public class MenuPpal extends JFrame {
 		JButton btnEqualize = new JButton("=");
 		btnEqualize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				calcular();
+				try {
+					calcular();
+				} catch (DivisionPorCeroExcepcion e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		GridBagConstraints gbc_btnEqualize = new GridBagConstraints();
@@ -486,7 +519,10 @@ public class MenuPpal extends JFrame {
 
 	}
 
-	private void calcular() {
+	private void calcular() throws DivisionPorCeroExcepcion {
+
+		calc.Igual();
+		refrescarTextoResultado();
 
 	}
 
