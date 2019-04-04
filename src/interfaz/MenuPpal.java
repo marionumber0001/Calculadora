@@ -228,6 +228,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnMoreLess, gbc_btnMoreLess);
 
 		JButton btnRoot = new JButton("√");
+		btnRoot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				raiz();
+			}
+		});
 		GridBagConstraints gbc_btnRoot = new GridBagConstraints();
 		gbc_btnRoot.fill = GridBagConstraints.BOTH;
 		gbc_btnRoot.insets = new Insets(0, 0, 5, 0);
@@ -357,6 +362,15 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnMultiply, gbc_btnMultiply);
 
 		JButton btnFraction = new JButton("1/x");
+		btnFraction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					inversa();
+				} catch (DivisionPorCeroExcepcion e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		GridBagConstraints gbc_btnFraction = new GridBagConstraints();
 		gbc_btnFraction.fill = GridBagConstraints.BOTH;
 		gbc_btnFraction.insets = new Insets(0, 0, 5, 0);
@@ -531,11 +545,14 @@ public class MenuPpal extends JFrame {
 	}
 
 	private void raiz() {
+		calc.raiz();
+		refrescarTextoResultado();
 
 	}
 
-	private void inversa() {
-
+	private void inversa() throws DivisionPorCeroExcepcion {
+		calc.inversa();
+		refrescarTextoResultado();
 	}
 
 	private void cambiarSigno() {

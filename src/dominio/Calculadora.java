@@ -4,6 +4,9 @@ import exepciones.DivisionPorCeroExcepcion;
 
 public class Calculadora {
 
+	// CONSTANTS
+	private static final int LIMITE_NUMEROS_DISPLAY = 21;
+
 	// Attributes
 	private double num1;
 	private double num2;
@@ -11,7 +14,6 @@ public class Calculadora {
 	private String numActual;
 	private String numMemoria;
 	private boolean coma = false;
-	private static final int LIMITE_NUMEROS_DISPLAY = 21;
 	private boolean primeraPulsacion = false;
 
 	// Constructor
@@ -103,11 +105,11 @@ public class Calculadora {
 	}
 
 	public double raiz() {
-		return Math.sqrt(this.num1);
+		return 0;
 	}
 
 	public double inversa() throws DivisionPorCeroExcepcion {
-		return 1 / this.num1;
+		return 0;
 	}
 
 	// Change sign to current value
