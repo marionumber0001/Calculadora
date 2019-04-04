@@ -191,7 +191,7 @@ public class MenuPpal extends JFrame {
 		JButton btnCe = new JButton("CE");
 		btnCe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				clearError();
 			}
 		});
 		GridBagConstraints gbc_btnCe = new GridBagConstraints();
@@ -215,6 +215,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnC, gbc_btnC);
 
 		JButton btnMoreLess = new JButton("±");
+		btnMoreLess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cambiarSigno();
+			}
+		});
 		GridBagConstraints gbc_btnMoreLess = new GridBagConstraints();
 		gbc_btnMoreLess.fill = GridBagConstraints.BOTH;
 		gbc_btnMoreLess.insets = new Insets(0, 0, 5, 5);
@@ -422,7 +427,6 @@ public class MenuPpal extends JFrame {
 				try {
 					calcular();
 				} catch (DivisionPorCeroExcepcion e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -536,6 +540,8 @@ public class MenuPpal extends JFrame {
 
 	private void cambiarSigno() {
 
+		calc.cambiarSigno();
+		refrescarTextoResultado();
 	}
 
 	private void retroceder() {
@@ -545,6 +551,9 @@ public class MenuPpal extends JFrame {
 	}
 
 	private void clearError() {
+
+		calc.clearError();
+		refrescarTextoResultado();
 
 	}
 

@@ -46,14 +46,12 @@ public class Calculadora {
 
 		if (this.operacion.isEmpty()) {
 			this.num1 = Replace(this.numActual);
-			// this.numActual = "0";
 			this.coma = false;
 			this.primeraPulsacion = false;
 
 		} else {
 			if (primeraPulsacion) {
 				this.num2 = Replace(this.numActual);
-				// this.coma = false;
 				this.num1 = calcular();
 				this.primeraPulsacion = false;
 			}
@@ -114,6 +112,13 @@ public class Calculadora {
 
 	// Change sign to current value
 	public void cambiarSigno() {
+
+		double tmp = Double.valueOf(this.numActual);
+		tmp *= -1;
+		this.numActual = Double.toString(tmp);
+
+		comprobarDecimales(tmp);
+
 	}
 
 	// Reset all variables
@@ -124,6 +129,13 @@ public class Calculadora {
 		this.numMemoria = "";
 		this.coma = false;
 		this.primeraPulsacion = false;
+	}
+
+	public void clearError() {
+
+		this.primeraPulsacion = false;
+		this.numActual = "0";
+
 	}
 
 	// Concatenate number to current number
@@ -222,7 +234,18 @@ public class Calculadora {
 		this.numActual = Double.toString(res);
 		this.numActual = this.numActual.replace(".", ",");
 
+		comprobarDecimales(res);
 		return res;
+	}
+
+	public void Igual() throws DivisionPorCeroExcepcion {
+
+		if (this.operacion.equals(""))
+			return;
+		this.num2 = Replace(this.numActual);
+
+		calcular();
+
 	}
 
 	private Double Replace(String aux) {
@@ -231,15 +254,20 @@ public class Calculadora {
 		aux = aux.replace(",", ".");
 
 		double res = Double.parseDouble(aux);
+
 		return res;
 
 	}
 
-	public void Igual() throws DivisionPorCeroExcepcion {
-		this.num2 = Replace(this.numActual);
+	private void comprobarDecimales(double res) {
 
-		calcular();
+		if (res - (int) res == 0) {
+			this.numActual = this.numActual.substring(0, this.numActual.length() - 2);
+			this.coma = false;
+
+		} else {
+			this.coma = true;
+		}
 
 	}
-
 }
