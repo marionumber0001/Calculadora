@@ -46,7 +46,7 @@ public class Calculadora {
 
 		if (this.operacion.isEmpty()) {
 			this.num1 = Replace(this.numActual);
-			this.numActual = "0";
+			// this.numActual = "0";
 			this.coma = false;
 			this.primeraPulsacion = false;
 
