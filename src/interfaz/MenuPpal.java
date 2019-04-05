@@ -227,7 +227,7 @@ public class MenuPpal extends JFrame {
 		gbc_btnMoreLess.gridy = 1;
 		panel_Middle_Middle.add(btnMoreLess, gbc_btnMoreLess);
 
-		JButton btnRoot = new JButton("√");
+		JButton btnRoot = new JButton("\u221A");
 		btnRoot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				raiz();
