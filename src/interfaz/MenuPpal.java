@@ -528,6 +528,10 @@ public class MenuPpal extends JFrame {
 		calc.concatenar(numero);
 		refrescarTextoResultado();
 
+		// Darle el valor de Strnig numero a numActual o num1 o num2
+
+		// POSITIVO POR RESOLVER LO DEL UTF-8
+
 	}
 
 	private void asignarOperacion(String operacion) throws DivisionPorCeroExcepcion {

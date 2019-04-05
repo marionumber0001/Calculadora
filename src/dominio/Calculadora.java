@@ -105,7 +105,7 @@ public class Calculadora {
 	}
 
 	public double raiz() {
-		return 0;
+		return this.num1 = Math.sqrt(this.num2);
 	}
 
 	public double inversa() throws DivisionPorCeroExcepcion {
@@ -272,4 +272,10 @@ public class Calculadora {
 		}
 
 	}
+
+	/*
+	 * private void operarConUnParametro() {
+	 * 
+	 * }
+	 */
 }
