@@ -109,7 +109,7 @@ public class Calculadora {
 
 		double tmp = Math.sqrt(Double.parseDouble(this.numActual));
 
-		Replace(this.numActual = Double.toString(tmp));
+		this.numActual = Double.toString(tmp);
 
 		comprobarDecimales(tmp);
 
