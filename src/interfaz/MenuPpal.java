@@ -297,6 +297,15 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnDivide, gbc_btnDivide);
 
 		JButton btnPercentage = new JButton("%");
+		btnPercentage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					asignarOperacion("%");
+				} catch (DivisionPorCeroExcepcion e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		GridBagConstraints gbc_btnPercentage = new GridBagConstraints();
 		gbc_btnPercentage.fill = GridBagConstraints.BOTH;
 		gbc_btnPercentage.insets = new Insets(0, 0, 5, 0);
@@ -501,11 +510,11 @@ public class MenuPpal extends JFrame {
 
 		// ---------------------D i s p l a y---------------------
 
-		// Indicar el tamaÃ±o del frame
+		// Indicar el tamaño del frame
 		setSize(350, 415);
-		// Marcar que sea una aplicaciÃ³n que no se pueda redimensionar
+		// Marcar que sea una aplicación que no se pueda redimensionar
 		setResizable(false);
-		// AÃ±adir el tÃ­tulo de la aplicaciÃ³n
+		// Añadir el título de la aplicación
 		setTitle("Calculadora 2.0");
 
 		// Cambiar algunas propiedades
@@ -527,7 +536,6 @@ public class MenuPpal extends JFrame {
 
 		calc.concatenar(numero);
 		refrescarTextoResultado();
-
 
 		// POSITIVO POR RESOLVER LO DEL UTF-8
 

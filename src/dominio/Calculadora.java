@@ -103,11 +103,20 @@ public class Calculadora {
 	}
 
 	public double porcentaje() {
-		return 0;
+		double tmp = 0; 
+		tmp = (tmp * (Replace(this.numActual))) /100;
+
+		comprobarDecimales(tmp);
+
+		this.numActual = Millares(tmp);
+
+		this.primeraPulsacion = false;
+
+		return tmp;
+
 	}
 
 	public double raiz() {
-
 		double tmp = Math.sqrt((Replace(this.numActual)));
 
 		comprobarDecimales(tmp);
