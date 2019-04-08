@@ -528,7 +528,6 @@ public class MenuPpal extends JFrame {
 		calc.concatenar(numero);
 		refrescarTextoResultado();
 
-		// Darle el valor de Strnig numero a numActual o num1 o num2
 
 		// POSITIVO POR RESOLVER LO DEL UTF-8
 
@@ -551,7 +550,6 @@ public class MenuPpal extends JFrame {
 	private void raiz() {
 		calc.raiz();
 		refrescarTextoResultado();
-
 	}
 
 	private void inversa() throws DivisionPorCeroExcepcion {
