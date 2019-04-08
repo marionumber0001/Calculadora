@@ -101,11 +101,20 @@ public class Calculadora {
 		}
 	}
 
-	public void porcentaje() {
+	public double porcentaje() {
+		return 0;
 	}
 
 	public double raiz() {
-		return this.num1 = Math.sqrt(this.num2);
+
+		double tmp = Math.sqrt(Double.parseDouble(this.numActual));
+
+		Replace(this.numActual = Double.toString(tmp));
+
+		comprobarDecimales(tmp);
+
+		return tmp;
+
 	}
 
 	public double inversa() throws DivisionPorCeroExcepcion {
@@ -240,35 +249,6 @@ public class Calculadora {
 		return res;
 	}
 
-	public double calcularConUnOperando() throws DivisionPorCeroExcepcion {
-		double res = 0;
-		switch (operacion) {
-		case "+":
-			res = sumar();
-			break;
-		case "-":
-			res = restar();
-			break;
-		case "1/x":
-			res = inversa();
-			break;
-		case "\u221A":
-			res = raiz();
-			break;
-		}
-
-		this.num1 = 0;
-		this.num2 = 0;
-		this.operacion = "";
-		this.primeraPulsacion = false;
-
-		this.numActual = Double.toString(res);
-		this.numActual = this.numActual.replace(".", ",");
-
-		comprobarDecimales(res);
-		return res;
-	}
-
 	public void Igual() throws DivisionPorCeroExcepcion {
 
 		if (this.operacion.equals(""))
@@ -302,9 +282,4 @@ public class Calculadora {
 
 	}
 
-	/*
-	 * private void operarConUnParametro() {
-	 * 
-	 * }
-	 */
 }

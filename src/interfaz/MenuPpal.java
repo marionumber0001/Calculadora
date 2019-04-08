@@ -560,33 +560,28 @@ public class MenuPpal extends JFrame {
 	}
 
 	private void cambiarSigno() {
-
 		calc.cambiarSigno();
 		refrescarTextoResultado();
 	}
 
 	private void retroceder() {
-
 		calc.retroceder();
 		refrescarTextoResultado();
 	}
 
 	private void clearError() {
-
 		calc.clearError();
 		refrescarTextoResultado();
 
 	}
 
 	private void clear() {
-
 		calc.reset();
 		this.textResultado.setText("0");
 		refrescarTextoResultado();
 	}
 
 	private void refrescarTextoResultado() {
-
 		this.textResultado.setText(calc.getNumActual());
 	}
 }
