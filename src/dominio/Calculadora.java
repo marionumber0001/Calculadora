@@ -17,6 +17,7 @@ public class Calculadora {
 	private String numMemoria;
 	private boolean coma = false;
 	private boolean primeraPulsacion = false;
+	private boolean pulsacionOk = false;
 	DecimalFormat df = null;
 	DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
 
@@ -25,7 +26,7 @@ public class Calculadora {
 		reset();
 
 		simbolos.setDecimalSeparator(',');
-		df = new DecimalFormat("###,###.##", simbolos);
+		df = new DecimalFormat("###,###.###############", simbolos);
 
 	}
 
@@ -63,11 +64,14 @@ public class Calculadora {
 				this.num2 = Replace(this.numActual);
 				this.num1 = calcular();
 				this.primeraPulsacion = false;
+
+			} else if (this.pulsacionOk) {
+				this.num1 = Replace(this.numActual);
+				this.pulsacionOk = false;
 			}
 		}
 
 		this.operacion = operacion;
-
 	}
 
 	public String getNumActual() {
@@ -109,7 +113,7 @@ public class Calculadora {
 	}
 
 	public double porcentaje() {
-		double tmp = 0;
+		double tmp = Replace(this.numActual);
 		tmp = (tmp * (Replace(this.numActual))) / 100;
 
 		comprobarDecimales(tmp);
@@ -143,13 +147,9 @@ public class Calculadora {
 
 	// Change sign to current value
 	public void cambiarSigno() {
-
-		double tmp = Double.valueOf(this.numActual);
+		double tmp = Replace(this.numActual);
 		tmp *= -1;
-		this.numActual = Double.toString(tmp);
-
-		comprobarDecimales(tmp);
-
+		this.numActual = Millares(tmp);
 	}
 
 	// Reset all variables
@@ -275,10 +275,11 @@ public class Calculadora {
 	}
 
 	public void Igual() throws DivisionPorCeroExcepcion {
-
 		if (this.operacion.equals(""))
 			return;
+
 		this.num2 = Replace(this.numActual);
+		this.pulsacionOk = true;
 
 		calcular();
 
