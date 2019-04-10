@@ -1,6 +1,7 @@
 package dominio;
 
-import java.text.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 import exepciones.DivisionPorCeroExcepcion;
 
@@ -24,10 +25,8 @@ public class Calculadora {
 	// Constructor
 	public Calculadora() {
 		reset();
-
 		simbolos.setDecimalSeparator(',');
 		df = new DecimalFormat("###,###.###############", simbolos);
-
 	}
 
 	// Getters and Setters
@@ -115,11 +114,8 @@ public class Calculadora {
 	public double porcentaje() {
 		double tmp = Replace(this.numActual);
 		tmp = (tmp * (Replace(this.numActual))) / 100;
-
 		comprobarDecimales(tmp);
-
 		this.numActual = Millares(tmp);
-
 		this.primeraPulsacion = false;
 
 		return tmp;
@@ -133,7 +129,6 @@ public class Calculadora {
 		this.primeraPulsacion = false;
 
 		return tmp;
-
 	}
 
 	public double inversa() throws DivisionPorCeroExcepcion {
@@ -162,15 +157,12 @@ public class Calculadora {
 	}
 
 	public void clearError() {
-
 		this.primeraPulsacion = false;
 		this.numActual = "0";
-
 	}
 
 	// Concatenate number to current number
 	public String concatenar(String numero) {
-
 		// ---------------------W A R N I N G---------------------
 		if (LIMITE_NUMEROS_DISPLAY <= this.numActual.length())
 			return this.numActual;
@@ -207,9 +199,7 @@ public class Calculadora {
 	}
 
 	public void retroceder() {
-
 		// The first IF prohibits deleting digits from the result
-
 		if (this.primeraPulsacion) {
 			if (this.numActual.charAt(this.numActual.length() - 1) == ',')
 				this.coma = false;
@@ -282,7 +272,6 @@ public class Calculadora {
 		this.pulsacionOk = true;
 
 		calcular();
-
 	}
 
 	private Double Replace(String aux) {
@@ -291,7 +280,6 @@ public class Calculadora {
 		double res = Double.parseDouble(aux);
 
 		return res;
-
 	}
 
 	private void comprobarDecimales(double res) {
