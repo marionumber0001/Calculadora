@@ -270,7 +270,6 @@ public class Calculadora {
 
 		this.num2 = Replace(this.numActual);
 		this.pulsacionOk = true;
-
 		calcular();
 	}
 
