@@ -1,5 +1,7 @@
 package dominio;
 
+import java.text.*;
+
 import exepciones.DivisionPorCeroExcepcion;
 
 public class Calculadora {
@@ -15,12 +17,16 @@ public class Calculadora {
 	private String numMemoria;
 	private boolean coma = false;
 	private boolean primeraPulsacion = false;
-	private int contadorDeMillares = 0;
+	DecimalFormat df = null;
+	DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
 
 	// Constructor
 	public Calculadora() {
-
 		reset();
+
+		simbolos.setDecimalSeparator(',');
+		df = new DecimalFormat("###,###.##", simbolos);
+
 	}
 
 	// Getters and Setters
@@ -103,8 +109,8 @@ public class Calculadora {
 	}
 
 	public double porcentaje() {
-		double tmp = 0; 
-		tmp = (tmp * (Replace(this.numActual))) /100;
+		double tmp = 0;
+		tmp = (tmp * (Replace(this.numActual))) / 100;
 
 		comprobarDecimales(tmp);
 
@@ -118,11 +124,8 @@ public class Calculadora {
 
 	public double raiz() {
 		double tmp = Math.sqrt((Replace(this.numActual)));
-
 		comprobarDecimales(tmp);
-
 		this.numActual = Millares(tmp);
-
 		this.primeraPulsacion = false;
 
 		return tmp;
@@ -130,13 +133,9 @@ public class Calculadora {
 	}
 
 	public double inversa() throws DivisionPorCeroExcepcion {
-
 		double tmp = 1 / (Replace(this.numActual));
-
 		comprobarDecimales(tmp);
-
 		this.numActual = Millares(tmp);
-
 		this.primeraPulsacion = false;
 
 		return tmp;
@@ -155,7 +154,6 @@ public class Calculadora {
 
 	// Reset all variables
 	public void reset() {
-
 		this.operacion = "";
 		this.numActual = "0";
 		this.numMemoria = "";
@@ -198,22 +196,14 @@ public class Calculadora {
 		if (this.numActual.equals("0") && !numero.equals(","))
 			return this.numActual = numero;
 
-		if (!this.coma) {
-			if (this.contadorDeMillares == 4 || (this.numActual.length() > 4 && this.contadorDeMillares == 3)) {
+		// Format
 
-				String h1 = this.numActual.substring(0, 1);
-				String h2 = this.numActual.substring(1, this.numActual.length());
+		this.numActual += numero;
 
-				this.numActual = h1 + "." + h2;
+		if (!this.coma)
+			this.numActual = df.format(Replace(this.numActual));
 
-				this.contadorDeMillares = 0;
-
-			}
-
-			this.contadorDeMillares++;
-		}
-
-		return this.numActual += numero;
+		return this.numActual;
 	}
 
 	public void retroceder() {
@@ -229,6 +219,8 @@ public class Calculadora {
 			else
 				this.numActual = this.numActual.substring(0, this.numActual.length() - 1);
 
+			if (!this.coma)
+				this.numActual = df.format(Replace(this.numActual));
 		}
 	}
 
@@ -273,9 +265,7 @@ public class Calculadora {
 			break;
 		}
 
-		this.num1 = 0;
 		this.num2 = 0;
-		this.operacion = "";
 		this.primeraPulsacion = false;
 
 		comprobarDecimales(res);
@@ -297,7 +287,6 @@ public class Calculadora {
 	private Double Replace(String aux) {
 		aux = aux.replace(".", "");
 		aux = aux.replace(",", ".");
-
 		double res = Double.parseDouble(aux);
 
 		return res;
@@ -312,46 +301,7 @@ public class Calculadora {
 	}
 
 	private String Millares(double aux) {
-		int contador = 0;
-
-		String res = Double.toString(aux);
-		res = res.replace(".", ",");
-
-		int posicionComa = res.length();
-
-		if (this.coma) {
-			for (int i = 0; i < res.length(); i++)
-				if (res.charAt(i) == ',') {
-					posicionComa = i;
-					break;
-				}
-
-		} else {
-			res = res.substring(0, res.length() - 2);
-			posicionComa = res.length();
-		}
-
-		for (int i = posicionComa; i > 0; i--) {
-
-			if (contador == 3) {
-
-				String h1 = res.substring(0, i);
-				String h2 = res.substring(i, res.length());
-
-				res = h1 + "." + h2;
-
-				contador = 0;
-
-			}
-			contador++;
-		}
-
-		return res;
-
-	}
-
-	private void OperacionUnSumando() {
-
+		return df.format(aux);
 	}
 
 }
