@@ -15,7 +15,7 @@ public class Calculadora {
 	private double num2;
 	private String operacion;
 	private String numActual;
-	private String numMemoria;
+	private double numMemoria;
 	private boolean coma = false;
 	private boolean primeraPulsacion = false;
 	private boolean pulsacionOk = false;
@@ -90,11 +90,11 @@ public class Calculadora {
 		this.numActual = numActual;
 	}
 
-	public String getNumMemoria() {
+	public double getNumMemoria() {
 		return numMemoria;
 	}
 
-	public void setNumMemoria(String numMemoria) {
+	public void setNumMemoria(double numMemoria) {
 		this.numMemoria = numMemoria;
 	}
 
@@ -128,6 +128,7 @@ public class Calculadora {
 			this.numActual = Millares(tmp);
 			this.num2 = tmp;
 			this.primeraPulsacion = false;
+			this.pulsacionOk = false;
 
 			return tmp;
 		} else
@@ -164,10 +165,13 @@ public class Calculadora {
 
 	// Reset all variables
 	public void reset() {
+		this.num1 = 0;
+		this.num2 = 0;
 		this.operacion = "";
 		this.numActual = "0";
-		this.numMemoria = "";
+		this.numMemoria = 0;
 		this.coma = false;
+		this.pulsacionOk = false;
 		this.primeraPulsacion = false;
 	}
 
@@ -229,10 +233,24 @@ public class Calculadora {
 		}
 	}
 
+	public void memoryClear() {
+		this.numMemoria = 0;
+	}
+
+	public void memoryRecall() {
+		this.numActual = String.valueOf(this.numMemoria);
+	}
+
+	public void memoryStorage() {
+		this.numMemoria = Replace(this.numActual);
+	}
+
 	public void sumarMemoria() {
+		this.numMemoria += Replace(this.numActual);
 	}
 
 	public void restarMemoria() {
+		this.numMemoria -= Replace(this.numActual);
 	}
 
 	public double calcular() throws DivisionPorCeroExcepcion {
@@ -288,6 +306,7 @@ public class Calculadora {
 			this.num1 = Replace(this.numActual);
 
 		this.pulsacionOk = true;
+		this.coma = false;
 		calcular();
 	}
 

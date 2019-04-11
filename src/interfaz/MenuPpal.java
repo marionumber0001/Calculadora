@@ -134,6 +134,7 @@ public class MenuPpal extends JFrame {
 		JButton btnMa = new JButton("MC");
 		btnMa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				memoryClear();
 			}
 		});
 		GridBagConstraints gbc_btnMa = new GridBagConstraints();
@@ -144,6 +145,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnMa, gbc_btnMa);
 
 		JButton btnMc = new JButton("MR");
+		btnMc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				memoryRecall();
+			}
+		});
 		GridBagConstraints gbc_btnMc = new GridBagConstraints();
 		gbc_btnMc.fill = GridBagConstraints.BOTH;
 		gbc_btnMc.insets = new Insets(0, 0, 5, 5);
@@ -152,6 +158,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnMc, gbc_btnMc);
 
 		JButton btnMs = new JButton("MS");
+		btnMs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memoryStorage();
+			}
+		});
 		GridBagConstraints gbc_btnMs = new GridBagConstraints();
 		gbc_btnMs.fill = GridBagConstraints.BOTH;
 		gbc_btnMs.insets = new Insets(0, 0, 5, 5);
@@ -160,6 +171,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnMs, gbc_btnMs);
 
 		JButton btnM = new JButton("M+");
+		btnM.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				sumarMemoria();
+			}
+		});
 		GridBagConstraints gbc_btnM = new GridBagConstraints();
 		gbc_btnM.fill = GridBagConstraints.BOTH;
 		gbc_btnM.insets = new Insets(0, 0, 5, 5);
@@ -168,6 +184,11 @@ public class MenuPpal extends JFrame {
 		panel_Middle_Middle.add(btnM, gbc_btnM);
 
 		JButton btnM1 = new JButton("M-");
+		btnM1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				restarMemoria();
+			}
+		});
 		GridBagConstraints gbc_btnM1 = new GridBagConstraints();
 		gbc_btnM1.fill = GridBagConstraints.BOTH;
 		gbc_btnM1.insets = new Insets(0, 0, 5, 0);
@@ -577,6 +598,31 @@ public class MenuPpal extends JFrame {
 	private void clear() {
 		calc.reset();
 		this.textResultado.setText("0");
+		refrescarTextoResultado();
+	}
+
+	public void memoryClear() {
+		calc.memoryClear();
+		refrescarTextoResultado();
+	}
+
+	public void memoryRecall() {
+		calc.memoryRecall();
+		refrescarTextoResultado();
+	}
+
+	public void memoryStorage() {
+		calc.memoryStorage();
+		refrescarTextoResultado();
+	}
+
+	public void sumarMemoria() {
+		calc.sumarMemoria();
+		refrescarTextoResultado();
+	}
+
+	public void restarMemoria() {
+		calc.restarMemoria();
 		refrescarTextoResultado();
 	}
 
