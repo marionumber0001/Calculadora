@@ -61,7 +61,10 @@ public class Calculadora {
 		} else {
 			if (primeraPulsacion) {
 				this.num2 = Replace(this.numActual);
-				this.num1 = calcular();
+
+				if (!operacion.equals("%"))
+					this.num1 = calcular();
+
 				this.coma = false;
 				this.primeraPulsacion = false;
 
@@ -72,6 +75,10 @@ public class Calculadora {
 			}
 		}
 
+		if (operacion.equals("%") && this.operacion.length() == 1) {
+			this.operacion += operacion;
+			calcular();
+		}
 		this.operacion = operacion;
 	}
 
@@ -102,7 +109,6 @@ public class Calculadora {
 
 	public double multiplicar() {
 		return this.num1 * this.num2;
-
 	}
 
 	public double dividir() throws DivisionPorCeroExcepcion {
@@ -120,6 +126,7 @@ public class Calculadora {
 			tmp = (this.num1 * tmp) / 100;
 			this.coma = false;
 			this.numActual = Millares(tmp);
+			this.num2 = tmp;
 			this.primeraPulsacion = false;
 
 			return tmp;
@@ -244,7 +251,6 @@ public class Calculadora {
 			res = dividir();
 			break;
 		case "+%":
-			porcentaje();
 			porcentaje();
 			res = sumar();
 			sumar();
