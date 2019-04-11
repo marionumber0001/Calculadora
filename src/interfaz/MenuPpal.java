@@ -540,17 +540,13 @@ public class MenuPpal extends JFrame {
 	}
 
 	private void asignarOperacion(String operacion) throws DivisionPorCeroExcepcion {
-
 		calc.setOperacion(operacion);
 		refrescarTextoResultado();
-
 	}
 
 	private void calcular() throws DivisionPorCeroExcepcion {
-
 		calc.Igual();
 		refrescarTextoResultado();
-
 	}
 
 	private void raiz() {
@@ -576,7 +572,6 @@ public class MenuPpal extends JFrame {
 	private void clearError() {
 		calc.clearError();
 		refrescarTextoResultado();
-
 	}
 
 	private void clear() {

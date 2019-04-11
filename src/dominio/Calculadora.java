@@ -8,7 +8,7 @@ import exepciones.DivisionPorCeroExcepcion;
 public class Calculadora {
 
 	// CONSTANTS
-	private static final int LIMITE_NUMEROS_DISPLAY = 21;
+	private static final int LIMITE_NUMEROS_DISPLAY = 19;
 
 	// Attributes
 	private double num1;
@@ -62,10 +62,12 @@ public class Calculadora {
 			if (primeraPulsacion) {
 				this.num2 = Replace(this.numActual);
 				this.num1 = calcular();
+				this.coma = false;
 				this.primeraPulsacion = false;
 
 			} else if (this.pulsacionOk) {
 				this.num1 = Replace(this.numActual);
+				this.coma = false;
 				this.pulsacionOk = false;
 			}
 		}
@@ -113,18 +115,21 @@ public class Calculadora {
 
 	public double porcentaje() {
 		double tmp = Replace(this.numActual);
-		tmp = (tmp * (Replace(this.numActual))) / 100;
-		comprobarDecimales(tmp);
-		this.numActual = Millares(tmp);
-		this.primeraPulsacion = false;
+		if (tmp != 0 || this.num1 != 0) {
 
-		return tmp;
+			tmp = (this.num1 * tmp) / 100;
+			this.coma = false;
+			this.numActual = Millares(tmp);
+			this.primeraPulsacion = false;
 
+			return tmp;
+		} else
+			return 0;
 	}
 
 	public double raiz() {
 		double tmp = Math.sqrt((Replace(this.numActual)));
-		comprobarDecimales(tmp);
+		this.coma = false;
 		this.numActual = Millares(tmp);
 		this.primeraPulsacion = false;
 
@@ -132,8 +137,11 @@ public class Calculadora {
 	}
 
 	public double inversa() throws DivisionPorCeroExcepcion {
+		this.num1 = 0;
+		this.num2 = 0;
+
 		double tmp = 1 / (Replace(this.numActual));
-		comprobarDecimales(tmp);
+		this.coma = false;
 		this.numActual = Millares(tmp);
 		this.primeraPulsacion = false;
 
@@ -255,7 +263,7 @@ public class Calculadora {
 			break;
 		}
 
-		this.num2 = 0;
+		this.num1 = 0;
 		this.primeraPulsacion = false;
 
 		comprobarDecimales(res);
@@ -268,7 +276,11 @@ public class Calculadora {
 		if (this.operacion.equals(""))
 			return;
 
-		this.num2 = Replace(this.numActual);
+		if (!pulsacionOk)
+			this.num2 = Replace(this.numActual);
+		else
+			this.num1 = Replace(this.numActual);
+
 		this.pulsacionOk = true;
 		calcular();
 	}
