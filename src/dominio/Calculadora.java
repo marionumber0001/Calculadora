@@ -112,11 +112,16 @@ public class Calculadora {
 	}
 
 	public double dividir() throws DivisionPorCeroExcepcion {
-		if (this.num2 == 0) {
-			throw new DivisionPorCeroExcepcion();
-		} else {
-			return this.num1 / this.num2;
+		try {
+			if (this.num2 != 0) {
+				return this.num1 / this.num2;
+			} else {
+				throw new DivisionPorCeroExcepcion();
+			}
+		} catch (DivisionPorCeroExcepcion e) {
+			return 0;
 		}
+
 	}
 
 	public double porcentaje() {

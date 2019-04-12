@@ -10,6 +10,8 @@ import java.awt.Insets;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -26,7 +28,7 @@ import javax.swing.border.EmptyBorder;
 import dominio.Calculadora;
 import exepciones.DivisionPorCeroExcepcion;
 
-public class MenuPpal extends JFrame {
+public class MenuPpal extends JFrame implements KeyListener {
 
 	private JPanel contentPane;
 	private JTextField textResultado;
@@ -118,6 +120,8 @@ public class MenuPpal extends JFrame {
 		gl_panel_Top.setVerticalGroup(gl_panel_Top.createParallelGroup(Alignment.LEADING).addComponent(textResultado,
 				GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE));
 		panel_Top.setLayout(gl_panel_Top);
+
+		textResultado.addKeyListener(this);
 
 		Panel panel_Middle = new Panel();
 		contentPane.add(panel_Middle, BorderLayout.CENTER);
@@ -628,5 +632,177 @@ public class MenuPpal extends JFrame {
 
 	private void refrescarTextoResultado() {
 		this.textResultado.setText(calc.getNumActual());
+		textResultado.requestFocus();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+
+		int key = e.getKeyCode();
+		switch (key) {
+		case KeyEvent.VK_0:
+			insertarNumero("0");
+			break;
+		case KeyEvent.VK_1:
+			insertarNumero("1");
+			break;
+		case KeyEvent.VK_2:
+			insertarNumero("2");
+			break;
+		case KeyEvent.VK_3:
+			insertarNumero("3");
+			break;
+		case KeyEvent.VK_4:
+			insertarNumero("4");
+			break;
+		case KeyEvent.VK_5:
+			insertarNumero("5");
+			break;
+		case KeyEvent.VK_6:
+			insertarNumero("6");
+			break;
+		case KeyEvent.VK_7:
+			insertarNumero("7");
+			break;
+		case KeyEvent.VK_8:
+			insertarNumero("8");
+			break;
+		case KeyEvent.VK_9:
+			insertarNumero("9");
+			break;
+		case KeyEvent.VK_COMMA:
+			insertarNumero(".");
+			break;
+		case KeyEvent.VK_ESCAPE:
+			clear();
+			break;
+
+		case KeyEvent.VK_NUMPAD0:
+			insertarNumero("0");
+			break;
+		case KeyEvent.VK_NUMPAD1:
+			insertarNumero("1");
+			break;
+		case KeyEvent.VK_NUMPAD2:
+			insertarNumero("2");
+			break;
+		case KeyEvent.VK_NUMPAD3:
+			insertarNumero("3");
+			break;
+		case KeyEvent.VK_NUMPAD4:
+			insertarNumero("4");
+			break;
+		case KeyEvent.VK_NUMPAD5:
+			insertarNumero("5");
+			break;
+		case KeyEvent.VK_NUMPAD6:
+			insertarNumero("6");
+			break;
+		case KeyEvent.VK_NUMPAD7:
+			insertarNumero("7");
+			break;
+		case KeyEvent.VK_NUMPAD8:
+			insertarNumero("8");
+			break;
+		case KeyEvent.VK_NUMPAD9:
+			insertarNumero("9");
+			break;
+
+		case KeyEvent.VK_DECIMAL:
+			insertarNumero(".");
+			break;
+
+		case KeyEvent.VK_ENTER:
+			try {
+				calcular();
+			} catch (DivisionPorCeroExcepcion e1) {
+			}
+			break;
+
+		case KeyEvent.VK_PLUS:
+			try {
+				asignarOperacion("+");
+			} catch (DivisionPorCeroExcepcion e1) {
+				e1.printStackTrace();
+			}
+			break;
+		case KeyEvent.VK_MINUS:
+			try {
+				asignarOperacion("-");
+			} catch (DivisionPorCeroExcepcion e1) {
+				e1.printStackTrace();
+			}
+			break;
+		case KeyEvent.VK_MULTIPLY:
+			try {
+				asignarOperacion("*");
+			} catch (DivisionPorCeroExcepcion e1) {
+				e1.printStackTrace();
+			}
+			break;
+		case KeyEvent.VK_DIVIDE:
+			try {
+				asignarOperacion("/");
+			} catch (DivisionPorCeroExcepcion e1) {
+				e1.printStackTrace();
+			}
+			break;
+
+		case KeyEvent.VK_ADD:
+			try {
+				asignarOperacion("+");
+			} catch (DivisionPorCeroExcepcion e1) {
+				e1.printStackTrace();
+			}
+			break;
+		case KeyEvent.VK_SUBTRACT:
+			try {
+				asignarOperacion("-");
+			} catch (DivisionPorCeroExcepcion e1) {
+				e1.printStackTrace();
+			}
+			break;
+
+		case KeyEvent.VK_BACK_SPACE:
+			retroceder();
+			break;
+
+		}
+
+		if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_L) {
+
+			memoryClear();
+		}
+
+		if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_R) {
+
+			memoryRecall();
+		}
+
+		if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_M) {
+
+			memoryStorage();
+		}
+
+		if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_P) {
+
+			sumarMemoria();
+		}
+
+		if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Q) {
+
+			restarMemoria();
+		}
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+
 	}
 }
